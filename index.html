@@ -4,7 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Temptation Burguer — La Tentación del Norte en el Sur</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<!--
+  TYPOGRAPHY UPGRADE:
+  • Replaced 'Oswald' → 'Montserrat' (more refined, high-end feel vs old-school condensed)
+  • Replaced 'Barlow' → 'DM Sans' (cleaner, contemporary body text with better readability)
+  • Kept 'Bebas Neue' for impact display headings (iconic, cinematic)
+  • Added 'Syne' as a premium accent font for eyebrow labels (geometric, editorial)
+-->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════════════
    DESIGN TOKENS
@@ -26,8 +33,15 @@
   --glow-sm:0 0 20px rgba(249,115,22,.22);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bk);color:var(--wh);font-family:'Barlow',sans-serif;font-weight:300;overflow-x:hidden;cursor:default}
+html{
+  scroll-behavior:smooth;
+  overflow-x:hidden;
+  /* KEY ALIGNMENT FIX: scrollbar-gutter:stable reserves scrollbar space at all times.
+     Without this, when loader fades out and scrollbar appears, the viewport narrows
+     by ~17px, pushing all content LEFT — the root cause of the misalignment. */
+  scrollbar-gutter:stable;
+}
+body{background:var(--bk);color:var(--wh);font-family:'DM Sans',sans-serif;font-weight:300;cursor:default;}
 
 /* ═══════════════════════════════════════════
    CUSTOM CURSOR
@@ -65,7 +79,7 @@ body{background:var(--bk);color:var(--wh);font-family:'Barlow',sans-serif;font-w
 .loader-bar{height:100%;background:var(--og);animation:loadBar 1.3s ease both}
 @keyframes loadBar{from{width:0}to{width:100%}}
 .loader-text{
-  font-family:'Oswald',sans-serif;font-size:.65rem;letter-spacing:.3em;
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.32em;
   text-transform:uppercase;color:var(--o);opacity:.6;
   animation:fadeUp .5s .4s ease both;
 }
@@ -95,10 +109,12 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 .nav-logo-sm img{height:38px;filter:drop-shadow(0 0 8px rgba(249,115,22,.3))}
 .nav-links{display:flex;gap:32px;list-style:none}
 .nav-links a{
-  font-family:'Oswald',sans-serif;font-size:.72rem;
-  letter-spacing:.18em;text-transform:uppercase;
+  /* TYPOGRAPHY: Montserrat replaces Oswald — more sophisticated, contemporary feel */
+  font-family:'Montserrat',sans-serif;font-size:.68rem;
+  letter-spacing:.16em;text-transform:uppercase;
   color:rgba(250,247,242,.45);text-decoration:none;
   transition:color .3s;position:relative;padding-bottom:4px;
+  font-weight:600;
 }
 .nav-links a::after{
   content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
@@ -108,7 +124,7 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 .nav-links a:hover::after{width:100%}
 .nav-cta{
   background:transparent;border:1.5px solid var(--o);color:var(--o);
-  font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:700;
+  font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;
   letter-spacing:.12em;text-transform:uppercase;
   padding:10px 24px;cursor:pointer;text-decoration:none;
   position:relative;overflow:hidden;
@@ -133,7 +149,7 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 }
 .mobile-menu.open{opacity:1;visibility:visible}
 .mobile-menu a{
-  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.1em;
+  font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.1em;
   color:var(--wh);text-decoration:none;transition:color .2s;
 }
 .mobile-menu a:hover{color:var(--o)}
@@ -200,9 +216,15 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 
 .hero-inner{
   position:relative;z-index:10;
-  max-width:820px;padding:0 7vw;
+  /* ALIGNMENT FIX: width:100% ensures this fills the full flex-column container.
+     Without it, the flex item sized to content, causing centering to appear off. */
+  width:100%;
+  max-width:840px;
+  padding:0 7vw;
+  /* margin auto provides fallback centering if align-items ever changes */
+  margin-left:auto;
+  margin-right:auto;
   display:flex;flex-direction:column;align-items:flex-start;
-  /* left-aligned for premium editorial feel */
 }
 
 /* ─── LOGO: floating, no box ─── */
@@ -234,17 +256,18 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 .hero-divider-dot{width:5px;height:5px;background:var(--o);border-radius:50%;box-shadow:var(--glow-sm)}
 
 .hero-tagline{
-  font-family:'Oswald',sans-serif;
-  font-size:clamp(.88rem,2vw,1.1rem);font-weight:400;
-  letter-spacing:.32em;text-transform:uppercase;
+  /* TYPOGRAPHY: Syne replaces Oswald — more editorial, premium feel for hero eyebrow */
+  font-family:'Syne',sans-serif;
+  font-size:clamp(.78rem,1.8vw,.95rem);font-weight:700;
+  letter-spacing:.34em;text-transform:uppercase;
   color:rgba(250,247,242,.45);
   animation:fadeUp .6s 1.9s ease both;
 }
 .hero-headline{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(3.5rem,9vw,8.5rem);
-  line-height:.92;letter-spacing:.01em;
-  color:var(--wh);margin-top:16px;
+  font-size:clamp(4rem,10vw,9.5rem);
+  line-height:.9;letter-spacing:.015em;
+  color:var(--wh);margin-top:20px;
   text-shadow:0 4px 40px rgba(0,0,0,.8);
   animation:fadeUp .7s 2s ease both;
 }
@@ -254,8 +277,15 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
   background-clip:text;font-style:normal;
 }
 .hero-sub{
-  margin-top:18px;font-size:clamp(.88rem,1.5vw,1rem);
-  color:rgba(250,247,242,.55);line-height:1.7;max-width:420px;
+  margin-top:20px;
+  /* TYPOGRAPHY: DM Sans at body size — better readability, refined spacing */
+  font-family:'DM Sans',sans-serif;
+  font-size:clamp(.92rem,1.6vw,1.08rem);
+  font-weight:300;
+  color:rgba(250,247,242,.58);
+  line-height:1.8;
+  max-width:400px;
+  letter-spacing:.01em;
   animation:fadeUp .6s 2.1s ease both;
 }
 .hero-ctas{
@@ -268,9 +298,9 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 .cta-wa{
   display:inline-flex;align-items:center;gap:12px;
   background:linear-gradient(135deg,#2cd366,#25D366 50%,#1aa854);
-  color:#fff;font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:18px 36px;text-decoration:none;
+  color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;
+  font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:18px 38px;text-decoration:none;
   position:relative;overflow:hidden;
   transition:transform .3s,box-shadow .3s;
   box-shadow:0 8px 30px rgba(37,211,102,.4),inset 0 1px 0 rgba(255,255,255,.15);
@@ -288,8 +318,8 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
   display:inline-flex;align-items:center;gap:12px;
   background:rgba(250,247,242,.05);
   border:1.5px solid rgba(250,247,242,.2);color:var(--wh);
-  font-family:'Oswald',sans-serif;font-weight:600;
-  font-size:.88rem;letter-spacing:.1em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;font-weight:600;
+  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
   padding:17px 28px;text-decoration:none;
   transition:all .35s;backdrop-filter:blur(4px);
 }
@@ -314,15 +344,15 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
   font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--o);
   line-height:1;letter-spacing:.05em;
 }
-.trust-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gr2)}
+.trust-label{font-family:'Syne',sans-serif;font-size:.58rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gr2)}
 .trust-sep{width:1px;height:38px;background:rgba(249,115,22,.15)}
 
-/* scroll cue */
+/* scroll cue — uses right:7vw so it stays anchored to viewport, not layout flow */
 .hero-scroll{
   position:absolute;bottom:38px;right:7vw;z-index:10;
   display:flex;flex-direction:column;align-items:center;gap:8px;
   color:rgba(250,247,242,.35);
-  font-family:'Oswald',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+  font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
   text-decoration:none;transition:color .3s;
   animation:scrollBob 2.4s ease-in-out infinite;
 }
@@ -335,9 +365,10 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 ═══════════════════════════════════════════ */
 section{padding:100px 7vw}
 .section-eyebrow{
-  font-family:'Oswald',sans-serif;
-  font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--o);margin-bottom:14px;
+  /* TYPOGRAPHY: Syne replaces Oswald for eyebrow labels — more editorial, premium */
+  font-family:'Syne',sans-serif;
+  font-size:.62rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--o);margin-bottom:16px;
   display:flex;align-items:center;gap:14px;
 }
 .section-eyebrow::after{
@@ -346,8 +377,9 @@ section{padding:100px 7vw}
 }
 .section-title{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2.4rem,6vw,5rem);
-  line-height:.95;letter-spacing:.02em;color:var(--wh);
+  /* Slightly larger for more impact */
+  font-size:clamp(2.6rem,6.5vw,5.5rem);
+  line-height:.92;letter-spacing:.025em;color:var(--wh);
 }
 .section-title span{color:var(--o)}
 .section-title em{
@@ -381,16 +413,20 @@ section{padding:100px 7vw}
 .story-label strong{display:block;color:rgba(249,115,22,.12)}
 .story-content{}
 .story-quote{
-  font-family:'Oswald',sans-serif;font-size:clamp(1.1rem,2vw,1.45rem);
-  font-weight:400;line-height:1.7;color:rgba(250,247,242,.85);
+  /* TYPOGRAPHY: DM Sans italic for pull-quote — elegant, readable, refined */
+  font-family:'DM Sans',sans-serif;
+  font-style:italic;
+  font-size:clamp(1rem,1.8vw,1.28rem);
+  font-weight:300;line-height:1.85;color:rgba(250,247,242,.82);
   margin-bottom:36px;
   border-left:3px solid var(--o);
-  padding-left:24px;
+  padding-left:26px;
+  letter-spacing:.01em;
 }
 .story-meta{display:flex;gap:40px;flex-wrap:wrap}
 .story-meta-item{display:flex;flex-direction:column;gap:4px}
 .story-meta-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--o);line-height:1}
-.story-meta-label{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gr)}
+.story-meta-label{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gr)}
 
 /* ═══════════════════════════════════════════
    SPECIALS — FULL BLEED CINEMA
@@ -436,18 +472,20 @@ section{padding:100px 7vw}
 }
 .special-badge{
   display:inline-block;background:var(--o);color:var(--bk);
-  font-family:'Oswald',sans-serif;font-size:.6rem;font-weight:700;
+  font-family:'Syne',sans-serif;font-size:.58rem;font-weight:800;
   letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;margin-bottom:16px;
   transform:translateY(0);transition:transform .4s;
 }
 .special-name{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(2rem,4vw,3.2rem);color:var(--wh);
-  line-height:.95;letter-spacing:.02em;margin-bottom:12px;
+  font-size:clamp(2.2rem,4.5vw,3.6rem);color:var(--wh);
+  line-height:.92;letter-spacing:.025em;margin-bottom:14px;
   text-shadow:0 4px 20px rgba(0,0,0,.9);
 }
 .special-desc{
-  font-size:.84rem;color:rgba(250,247,242,.65);line-height:1.7;
+  font-family:'DM Sans',sans-serif;
+  font-size:.86rem;font-weight:300;
+  color:rgba(250,247,242,.68);line-height:1.78;
   max-width:380px;
   transform:translateY(16px);opacity:0;
   transition:all .5s cubic-bezier(.4,0,.2,1);
@@ -456,7 +494,7 @@ section{padding:100px 7vw}
 .special-order{
   display:inline-flex;align-items:center;gap:8px;
   margin-top:24px;color:var(--o);
-  font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   text-decoration:none;
   transform:translateY(12px);opacity:0;
   transition:all .5s .08s cubic-bezier(.4,0,.2,1);
@@ -500,11 +538,12 @@ section{padding:100px 7vw}
 .combo-card:hover::after{opacity:1}
 .combo-emoji{font-size:1.8rem;margin-bottom:14px;display:block}
 .combo-name{
-  font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;
-  text-transform:uppercase;color:var(--o);margin-bottom:8px;
+  font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;
+  text-transform:uppercase;color:var(--o);margin-bottom:10px;
+  letter-spacing:.05em;
   position:relative;z-index:1;
 }
-.combo-desc{font-size:.8rem;color:var(--gr);line-height:1.65;margin-bottom:16px;position:relative;z-index:1}
+.combo-desc{font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:300;color:var(--gr);line-height:1.7;margin-bottom:18px;position:relative;z-index:1}
 .combo-price{
   font-family:'Bebas Neue',sans-serif;font-size:1.8rem;
   color:var(--wh);letter-spacing:.05em;position:relative;z-index:1;
@@ -527,7 +566,7 @@ section{padding:100px 7vw}
   pointer-events:none;
 }
 .menu-tab{
-  font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.14em;
+  font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;
   text-transform:uppercase;color:var(--gr);
   padding:16px 24px;cursor:pointer;border:none;background:none;
   white-space:nowrap;border-bottom:2px solid transparent;
@@ -579,26 +618,27 @@ section{padding:100px 7vw}
 .item-badge{
   position:absolute;top:0;left:0;
   background:var(--o);color:var(--bk);
-  font-family:'Oswald',sans-serif;font-size:.56rem;font-weight:700;
+  font-family:'Syne',sans-serif;font-size:.54rem;font-weight:800;
   letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;
 }
 .item-tag{
   display:inline-block;background:rgba(249,115,22,.1);color:var(--o);
-  font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+  font-family:'Syne',sans-serif;
+  font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
   padding:3px 9px;margin-bottom:10px;border:1px solid rgba(249,115,22,.2);
 }
 .item-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
 .item-name{
-  font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;
-  text-transform:uppercase;line-height:1.2;flex:1;
+  font-family:'Montserrat',sans-serif;font-size:.9rem;font-weight:700;
+  text-transform:uppercase;line-height:1.25;flex:1;letter-spacing:.03em;
   transition:color .3s;
 }
 .menu-item:hover .item-name{color:var(--o)}
 .item-price{
-  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  font-family:'Bebas Neue',sans-serif;font-size:1.45rem;
   color:var(--o);white-space:nowrap;letter-spacing:.05em;
 }
-.item-desc{font-size:.8rem;color:var(--gr);line-height:1.65}
+.item-desc{font-family:'DM Sans',sans-serif;font-size:.8rem;font-weight:300;color:var(--gr);line-height:1.7;letter-spacing:.01em}
 .adicionales-grid{
   display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
   gap:2px;margin-bottom:54px;
@@ -609,8 +649,8 @@ section{padding:100px 7vw}
   transition:border-color .3s,background .3s;cursor:pointer;
 }
 .adicional-item:hover{border-color:rgba(249,115,22,.3);background:rgba(249,115,22,.04)}
-.adicional-name{font-size:.85rem;color:var(--wh)}
-.adicional-price{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--o);letter-spacing:.05em}
+.adicional-name{font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:400;color:var(--wh)}
+.adicional-price{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;color:var(--o);letter-spacing:.05em}
 
 /* ═══════════════════════════════════════════
    ABOUT — ORANGE BLOCK
@@ -630,7 +670,9 @@ section{padding:100px 7vw}
 #about .section-eyebrow::after{background:rgba(0,0,0,.2)}
 #about .section-title{color:var(--bk)}
 .about-text{
-  font-size:1.05rem;line-height:1.8;color:rgba(6,6,6,.7);margin-top:20px;max-width:480px;
+  font-family:'DM Sans',sans-serif;
+  font-size:1.05rem;font-weight:300;line-height:1.85;color:rgba(6,6,6,.72);margin-top:20px;max-width:480px;
+  letter-spacing:.01em;
 }
 .about-features{margin-top:44px;display:flex;flex-direction:column;gap:18px}
 .feat-item{display:flex;align-items:center;gap:16px}
@@ -640,7 +682,7 @@ section{padding:100px 7vw}
   font-size:1.2rem;flex-shrink:0;
 }
 .feat-label{
-  font-family:'Oswald',sans-serif;font-size:.92rem;font-weight:600;
+  font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:600;
   letter-spacing:.06em;text-transform:uppercase;color:rgba(6,6,6,.85);
 }
 .about-visual{position:relative;z-index:1}
@@ -678,13 +720,13 @@ section{padding:100px 7vw}
   transition:background .3s,box-shadow .3s;
 }
 .info-block:hover .info-icon{background:rgba(249,115,22,.08);box-shadow:var(--glow-sm)}
-.info-label{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--o);margin-bottom:5px}
-.info-value{font-size:.98rem;line-height:1.6;color:var(--wh)}
+.info-label{font-family:'Syne',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--o);margin-bottom:5px}
+.info-value{font-family:'DM Sans',sans-serif;font-size:.98rem;font-weight:300;line-height:1.65;color:var(--wh)}
 .wa-block{margin-top:38px}
 .btn-whatsapp{
   background:linear-gradient(135deg,#2cd366,#25D366);color:#fff;
-  font-family:'Oswald',sans-serif;font-weight:700;font-size:.88rem;
-  letter-spacing:.12em;text-transform:uppercase;
+  font-family:'Montserrat',sans-serif;font-weight:700;font-size:.82rem;
+  letter-spacing:.14em;text-transform:uppercase;
   padding:18px 38px;text-decoration:none;
   display:inline-flex;align-items:center;gap:12px;
   transition:transform .3s,box-shadow .3s;
@@ -706,13 +748,14 @@ section{padding:100px 7vw}
 #social{background:var(--bk);text-align:center;overflow:hidden}
 .social-headline-wrap{position:relative;display:inline-block}
 .social-sub{
-  font-size:1.05rem;color:var(--gr2);margin-top:18px;
-  max-width:460px;margin-left:auto;margin-right:auto;line-height:1.7;
+  font-family:'DM Sans',sans-serif;
+  font-size:1.05rem;font-weight:300;color:var(--gr2);margin-top:18px;
+  max-width:460px;margin-left:auto;margin-right:auto;line-height:1.8;
 }
 .instagram-handle{
   display:inline-flex;align-items:center;gap:12px;
   margin-top:36px;color:var(--o);
-  font-family:'Oswald',sans-serif;font-size:1.2rem;letter-spacing:.08em;
+  font-family:'Montserrat',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:.1em;
   text-decoration:none;padding:18px 32px;
   border:1.5px solid rgba(249,115,22,.25);
   transition:all .35s;position:relative;overflow:hidden;
@@ -745,7 +788,7 @@ section{padding:100px 7vw}
   opacity:0;transition:opacity .4s;
 }
 .social-tile:hover .social-tile-overlay{opacity:1}
-.social-tile-overlay span{color:var(--wh);font-size:.7rem;font-family:'Oswald',sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.social-tile-overlay span{color:var(--wh);font-size:.68rem;font-family:'Montserrat',sans-serif;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
 
 /* ═══════════════════════════════════════════
    FLOATING WA
@@ -775,14 +818,15 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
   height:52px;margin-bottom:20px;
   filter:drop-shadow(0 0 12px rgba(249,115,22,.25));
 }
-.footer-tagline{font-size:.88rem;color:var(--gr);line-height:1.75;max-width:270px}
+.footer-tagline{font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;color:var(--gr);line-height:1.8;max-width:270px}
 .footer-col-title{
-  font-family:'Oswald',sans-serif;font-size:.72rem;font-weight:700;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:22px;
+  font-family:'Syne',sans-serif;font-size:.65rem;font-weight:800;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--o);margin-bottom:22px;
 }
 .footer-links{list-style:none;display:flex;flex-direction:column;gap:12px}
 .footer-links a{
-  font-size:.86rem;color:var(--gr);text-decoration:none;
+  font-family:'DM Sans',sans-serif;
+  font-size:.86rem;font-weight:300;color:var(--gr);text-decoration:none;
   transition:color .25s,padding-left .25s;display:flex;align-items:center;gap:0;
 }
 .footer-links a:hover{color:var(--wh);padding-left:6px}
@@ -829,9 +873,11 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
   .footer-grid{grid-template-columns:1fr;gap:40px}
   .social-grid{grid-template-columns:repeat(2,1fr)}
   .menu-items-grid{grid-template-columns:1fr}
+  /* On tablet, center the hero content cleanly */
   .hero-inner{align-items:center;text-align:center}
   .hero-trust{justify-content:center}
-  .hero-scroll{right:50%;transform:translateX(50%);bottom:28px}
+  /* ALIGNMENT: use left:50% + translateX instead of right to keep centered */
+  .hero-scroll{right:auto;left:50%;transform:translateX(-50%);bottom:28px;animation:none}
   .hero-divider{justify-content:center}
 }
 @media(max-width:680px){
@@ -864,7 +910,7 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
 </div>
 
 <!-- ═══ FLOATING WA ═══ -->
-<a href="https://wa.me/57XXXXXXXXXX?text=Hola%20Temptation%20Burguer%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%94%A5" target="_blank" class="wa-float" aria-label="WhatsApp">
+<a href="https://wa.me/573246622956?text=Hola%20Temptation%20Burguer%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%94%A5" target="_blank" class="wa-float" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
@@ -874,7 +920,8 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
   <a href="#menu-full" onclick="toggleMenu()">Menú</a>
   <a href="#story" onclick="toggleMenu()">Nosotros</a>
   <a href="#location" onclick="toggleMenu()">Sedes</a>
-  <a href="https://wa.me/57XXXXXXXXXX" target="_blank" style="color:var(--o)">WhatsApp</a>
+  <a href="https://wa.me/573008590499" target="_blank" style="color:var(--o);font-size:1.8rem">📍 San Luis · WA</a>
+  <a href="https://wa.me/573246622956" target="_blank" style="color:var(--o);font-size:1.8rem">📍 El Carmen · WA</a>
 </div>
 
 <!-- ═══ NAV ═══ -->
@@ -886,7 +933,7 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
     <li><a href="#story">Nosotros</a></li>
     <li><a href="#location">Sedes</a></li>
   </ul>
-  <a href="https://wa.me/57XXXXXXXXXX" target="_blank" class="nav-cta">Pedir ahora</a>
+  <a href="https://wa.me/573246622956" target="_blank" class="nav-cta">Pedir ahora</a>
   <div class="hamburger" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 
@@ -923,7 +970,7 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
     <p class="hero-sub">Hamburguesas artesanales, pizzas y más en Barranquilla. Dos sedes listas para tentarte.</p>
 
     <div class="hero-ctas">
-      <a href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%94%A5" target="_blank" class="cta-wa">
+      <a href="https://wa.me/573246622956?text=Hola%2C%20quiero%20hacer%20un%20pedido%20%F0%9F%94%A5" target="_blank" class="cta-wa">
         <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span>Ordenar por WhatsApp</span>
       </a>
@@ -989,7 +1036,7 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
         <span class="special-badge">🏆 Legend Fest</span>
         <div class="special-name">THE PROMISE BÚRGUER</div>
         <p class="special-desc">Pan tipo brioche, 150gr carne premium, queso cheddar americano, mix de chorizo de ternera, salchicha suiza, tocineta, cebolla caramelizada, crunchy y salsa tentadora.</p>
-        <a href="https://wa.me/57XXXXXXXXXX?text=Quiero%20The%20Promise%20Búrguer%20🍔" target="_blank" class="special-order">Ordenar ahora <span class="special-order-arrow">→</span></a>
+        <a href="https://wa.me/573246622956?text=Quiero%20The%20Promise%20Búrguer%20🍔" target="_blank" class="special-order">Ordenar ahora <span class="special-order-arrow">→</span></a>
       </div>
     </div>
     <div class="special-card">
@@ -1001,7 +1048,7 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
         <span class="special-badge">⭐ Signature</span>
         <div class="special-name">SWEET BACON</div>
         <p class="special-desc">Pan especial, carne de res, queso holandés, queso cheddar, tocineta caramelizada con cebolla en reducción de vino tinto. Sofisticación en cada bocado.</p>
-        <a href="https://wa.me/57XXXXXXXXXX?text=Quiero%20Sweet%20Bacon%20🍔" target="_blank" class="special-order">Ordenar ahora <span class="special-order-arrow">→</span></a>
+        <a href="https://wa.me/573246622956?text=Quiero%20Sweet%20Bacon%20🍔" target="_blank" class="special-order">Ordenar ahora <span class="special-order-arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -1267,10 +1314,14 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
         <div class="info-icon">🕐</div>
         <div><div class="info-label">Horario</div><div class="info-value">Todos los días · Consultar horario exacto por WhatsApp</div></div>
       </div>
-      <div class="wa-block">
-        <a href="https://wa.me/57XXXXXXXXXX?text=Hola%20Temptation%20Burguer%20%F0%9F%94%A5" target="_blank" class="btn-whatsapp">
+      <div class="wa-block" style="display:flex;flex-direction:column;gap:12px">
+        <a href="https://wa.me/573008590499?text=Hola%20Temptation%20Burguer%20%F0%9F%94%A5%20(Sede%20San%20Luis)" target="_blank" class="btn-whatsapp" style="font-size:.76rem">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          Ordenar por WhatsApp
+          📍 Sede San Luis · 300 859 0499
+        </a>
+        <a href="https://wa.me/573246622956?text=Hola%20Temptation%20Burguer%20%F0%9F%94%A5%20(Sede%20El%20Carmen)" target="_blank" class="btn-whatsapp" style="font-size:.76rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          📍 Sede El Carmen · 324 662 2956
         </a>
       </div>
     </div>
@@ -1320,7 +1371,8 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
     <div>
       <div class="footer-col-title">Contacto</div>
       <ul class="footer-links">
-        <li><a href="https://wa.me/57XXXXXXXXXX" target="_blank">WhatsApp</a></li>
+        <li><a href="https://wa.me/573008590499" target="_blank">WhatsApp San Luis · 300 859 0499</a></li>
+        <li><a href="https://wa.me/573246622956" target="_blank">WhatsApp El Carmen · 324 662 2956</a></li>
         <li><a href="#">Calle 92 #3B – San Luis</a></li>
         <li><a href="#">Calle 57 #18 – El Carmen</a></li>
         <li><a href="https://www.instagram.com/temptation.burguer" target="_blank">@temptation.burguer</a></li>
@@ -1455,7 +1507,7 @@ document.querySelectorAll('#panel-burgers .reveal').forEach((el,i)=>{
 document.querySelectorAll('.menu-item').forEach(item=>{
   item.addEventListener('click',()=>{
     const name=item.querySelector('.item-name')?.textContent||'un producto';
-    window.open('https://wa.me/57XXXXXXXXXX?text='+encodeURIComponent('Hola Temptation Burguer 🍔, quiero pedir: '+name),'_blank');
+    window.open('https://wa.me/573246622956?text='+encodeURIComponent('Hola Temptation Burguer 🍔, quiero pedir: '+name),'_blank');
   });
 });
 </script>
