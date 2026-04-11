@@ -216,15 +216,15 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 
 .hero-inner{
   position:relative;z-index:10;
-  /* ALIGNMENT FIX: width:100% ensures this fills the full flex-column container.
-     Without it, the flex item sized to content, causing centering to appear off. */
   width:100%;
   max-width:840px;
   padding:0 7vw;
-  /* margin auto provides fallback centering if align-items ever changes */
   margin-left:auto;
   margin-right:auto;
-  display:flex;flex-direction:column;align-items:flex-start;
+  display:flex;flex-direction:column;
+  /* FIX: center-align on all screen sizes so logo sits in the true viewport center */
+  align-items:center;
+  text-align:center;
 }
 
 /* ─── LOGO: floating, no box ─── */
@@ -250,9 +250,10 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 .hero-divider{
   display:flex;align-items:center;gap:14px;
   margin:20px 0;
+  width:100%;max-width:320px;
   animation:fadeUp .6s 1.8s ease both;
 }
-.hero-divider-line{flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,var(--o),transparent)}
+.hero-divider-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--o),transparent)}
 .hero-divider-dot{width:5px;height:5px;background:var(--o);border-radius:50%;box-shadow:var(--glow-sm)}
 
 .hero-tagline{
@@ -332,9 +333,10 @@ nav.scrolled .nav-logo-sm{opacity:1;transform:translateY(0)}
 .cta-ig svg{width:20px;height:20px;flex-shrink:0;transition:transform .35s}
 .cta-ig:hover svg{transform:rotate(10deg) scale(1.1)}
 
-/* trust strip */
+/* trust strip — always centered now that hero is center-aligned */
 .hero-trust{
   display:flex;gap:40px;align-items:center;flex-wrap:wrap;
+  justify-content:center;
   margin-top:56px;padding-top:36px;
   border-top:1px solid rgba(249,115,22,.1);
   animation:fadeUp .6s 2.45s ease both;
@@ -873,12 +875,7 @@ footer{background:#030303;padding:64px 7vw 28px;border-top:1px solid var(--bd)}
   .footer-grid{grid-template-columns:1fr;gap:40px}
   .social-grid{grid-template-columns:repeat(2,1fr)}
   .menu-items-grid{grid-template-columns:1fr}
-  /* On tablet, center the hero content cleanly */
-  .hero-inner{align-items:center;text-align:center}
-  .hero-trust{justify-content:center}
-  /* ALIGNMENT: use left:50% + translateX instead of right to keep centered */
   .hero-scroll{right:auto;left:50%;transform:translateX(-50%);bottom:28px;animation:none}
-  .hero-divider{justify-content:center}
 }
 @media(max-width:680px){
   nav{padding:14px 5vw}
